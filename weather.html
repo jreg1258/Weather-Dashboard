@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="weather.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"> 
+    <form>
+        <p>Weather DashBoard</p>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="search" placeholder="Recipient's username" aria-label="City" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary, fas fa-search-location" type="button" id="button-addon">
+                  
+            </button>
+            </div>
+          </div>
+        </form>
+        </div> 
+        </div>
+        <div class="col-lg-2 offset-lg-2">TEXT</div>
+    <div class="col-lg-2" id="buttons-go-here"></div>
+</div>
+    <div class="row">
+        <div class="col-sm" id="results-go-here"></div>
+    </div>   
+</div>
+
+<script src="https://kit.fontawesome.com/07056a6ca0.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $("#button-addon").on("click", function() {
+        event.preventDefault()
+        var searchTerm = $("#search").val()
+        
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+
+        $.ajax({
+            method: "GET",
+            url: queryURL
+        }).then(function(response) {
+           results = response
+           temp = results.main.temp
+           humid = results.main.humidity
+           wind = results.wind.speed
+           lat = results.coord.lat
+           lon = results.coord.lon
+
+           uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&APPID=7874013951269e39ea832bee33a22dbe" 
+           
+           $.ajax({
+            method: "GET",
+            url: uvURL
+        }).then(function(UVresponse) {
+            uvIndex = UVresponse.value
+                
+            console.log(temp)
+            console.log(humid)
+            console.log(wind)
+            console.log(lat)
+            console.log(lon)
+            console.log(uvIndex)
+            console.log(response)
+
+            a = $("<button>").attr("data-name", searchTerm)
+                a.addClass("city");
+            a.text(searchTerm);
+            $("#buttons-go-here").append(a)
+
+
+           
+        })
+        })})
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
