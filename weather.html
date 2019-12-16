@@ -77,24 +77,24 @@ $("#button-addon").on("click", function() {
             $.ajax({
                 method: "GET",
                 url: fiveDayURL
-                            }).then(function(fivedayresponse) {
-                                var fiveDay = fivedayresponse
+                }).then(function(fivedayresponse) {
+                    var fiveDay = fivedayresponse
                                 
-                                    if ($("#results-go-here").children) {
-                                    $("#results-go-here").empty()
-                                    $("#5day-go-here").empty()}
+                        if ($("#results-go-here").children) {
+                                $("#results-go-here").empty()
+                                $("#5day-go-here").empty()}
 
                                     var a = $("<button>").attr("data-name", searchTerm)
-                                    a.addClass("city");
-                                    a.text(searchTerm);
-                                    $("#buttons-go-here").append(a)
+                                            a.addClass("city");
+                                            a.text(searchTerm);
+                                            $("#buttons-go-here").append(a)
 
                                     var b = $("<h3>").text(searchTerm+" "+today)
-                                    b.addClass("float-left")
+                                            b.addClass("float-left")
                                     
                                     var c = $("<img>").attr("src", iconURL)
-                                    c.addClass("float-left")
-                                    c.attr("id","icon")
+                                            c.addClass("float-left")
+                                            c.attr("id","icon")
                                     
                                     var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
                                     var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
@@ -102,111 +102,105 @@ $("#button-addon").on("click", function() {
                                     var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
                                         
                                     var o = $("<h4>").text("5 Day Forecast:")
-                                        $("#5day-go-here").append(o)                               
-                                        var n = 8
-                                    for (var m=0;m<5;m++) {
-                                        var icon2 = fiveDay.list[n].weather[0].icon
-                                        var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                                        var h = $("<div>").addClass("float-left")
-                                        var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
-                                        var i = $("<p>").text(date) 
-                                        var j = $("<img>").attr("src", fiveIconURL )  
-                                        var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                                        var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
-                                            h.append(i,j,k,l)
-                                            $("#5day-go-here").append(h)
-                                            n+=7  
-                                    }
-                                    
+                                            $("#5day-go-here").append(o)                               
+                                        
+                                    var n = 8
+                                        for (var m=0;m<5;m++) {
+                                                var icon2 = fiveDay.list[n].weather[0].icon
+                                                var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
+                                                var h = $("<div>").addClass("float-left")
+                                                var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
+                                                var i = $("<p>").text(date) 
+                                                var j = $("<img>").attr("src", fiveIconURL )  
+                                                var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
+                                                var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                                                        h.append(i,j,k,l)
+                                                        $("#5day-go-here").append(h)
+                                                            n+=7 }
                                             $("#results-go-here").addClass("border rounded")
                                             $("#results-go-here").append(b,c,d,e,f,g)
                                             $("#search").val("")
                                             
                                             localStorage.last = $("#results-go-here")[0].innerHTML
                                             localStorage.last2 = $("#5day-go-here")[0].innerHTML
-            })
-        })})})
+})})})})
  
 
 $("#buttons-go-here").on("click", function() {
-            var element = event.target;
-    if(element.classList.contains("city")){
+    var element = event.target;
+        if(element.classList.contains("city")){
             var searchTerm = $(element).attr("data-name")}
         
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
 
         $.ajax({
             method: "GET",
             url: queryURL
-        }).then(function(response) {
-           var results = response
-           var temp = results.main.temp
-           var humid = results.main.humidity
-           var wind = results.wind.speed
-           var lat = results.coord.lat
-           var lon = results.coord.lon
-           var icon = results.weather[0].icon
-           var iconURL = "https://openweathermap.org/img/wn/"+icon+".png"
-           var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&APPID=7874013951269e39ea832bee33a22dbe" 
-           var today = new Date().toLocaleDateString()
+            }).then(function(response) {
+                var results = response
+                var temp = results.main.temp
+                var humid = results.main.humidity
+                var wind = results.wind.speed
+                var lat = results.coord.lat
+                var lon = results.coord.lon
+                var icon = results.weather[0].icon
+                var iconURL = "https://openweathermap.org/img/wn/"+icon+".png"
+                var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&APPID=7874013951269e39ea832bee33a22dbe" 
+                var today = new Date().toLocaleDateString()
 
-           $.ajax({
+        $.ajax({
             method: "GET",
             url: uvURL
-                }).then(function(UVresponse) {
-            var uvIndex = UVresponse.value
-            var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
-                    $.ajax({
-                     method: "GET",
-                        url: fiveDayURL
-                         }).then(function(fivedayresponse) {
-                            var fiveDay = fivedayresponse
+            }).then(function(UVresponse) {
+                var uvIndex = UVresponse.value
+                var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+        
+        $.ajax({
+            method: "GET",
+            url: fiveDayURL
+            }).then(function(fivedayresponse) {
+                var fiveDay = fivedayresponse
                                
+                if ($("#results-go-here").children) {
+                        $("#results-go-here").empty()
+                        $("#5day-go-here").empty()}
 
-                            if ($("#results-go-here").children) {
-                                $("#results-go-here").empty()
-                                $("#5day-go-here").empty()
-                            }
-
-
-                                var b = $("<h3>").text(searchTerm+" "+today)
-                                b.addClass("float-left")
+                var b = $("<h3>").text(searchTerm+" "+today)
+                        b.addClass("float-left")
                                 
-                                var c = $("<img>").attr("src", iconURL)
-                                c.addClass("float-left")
-                                c.attr("id","icon")
+                var c = $("<img>").attr("src", iconURL)
+                        c.addClass("float-left")
+                        c.attr("id","icon")
                                 
-                                var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
-                                var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
-                                var f = $("<p>").text("Wind Speed: "+wind+" MPH").attr("id","info")
-                                var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
+                var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
+                var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
+                var f = $("<p>").text("Wind Speed: "+wind+" MPH").attr("id","info")
+                var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
                                     
-                                var o = $("<h4>").text("5 Day Forecast:")
-                                    $("#5day-go-here").append(o)                               
-                                    var n = 8
-                                for (var m=0;m<5;m++) {
-                                    var icon2 = fiveDay.list[n].weather[0].icon
-                                    var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                                var h = $("<div>").addClass("float-left")
-                                var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
-                                var i = $("<p>").text(date) 
-                                var j = $("<img>").attr("src", fiveIconURL )  
-                                var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                                var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
-                                    h.append(i,j,k,l)
-                                    $("#5day-go-here").append(h)
-                                    n+=7  
-                                }
+                var o = $("<h4>").text("5 Day Forecast:")
+                        $("#5day-go-here").append(o)                               
+                
+                var n = 8
+                    for (var m=0;m<5;m++) {
+                        var icon2 = fiveDay.list[n].weather[0].icon
+                        var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
+                        var h = $("<div>").addClass("float-left")
+                        var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
+                        var i = $("<p>").text(date) 
+                        var j = $("<img>").attr("src", fiveIconURL )  
+                        var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
+                        var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                                    
+                            h.append(i,j,k,l)
+                            $("#5day-go-here").append(h)
+                        n+=7; }
                                 
-                                $("#results-go-here").addClass("border rounded")
-                                $("#results-go-here").append(b,c,d,e,f,g)
+                        $("#results-go-here").addClass("border rounded")
+                        $("#results-go-here").append(b,c,d,e,f,g)
                                 
-                                
-                                localStorage.last = $("#results-go-here")[0].innerHTML
-                                localStorage.last2 = $("#5day-go-here")[0].innerHTML
-                            
-        })
-        })})})
+                        localStorage.last = $("#results-go-here")[0].innerHTML
+                        localStorage.last2 = $("#5day-go-here")[0].innerHTML
+})})})})
 
 
 $("form").on("submit", function() {
@@ -241,63 +235,53 @@ $("form").on("submit", function() {
                         url: fiveDayURL
                          }).then(function(fivedayresponse) {
                             var fiveDay = fivedayresponse
-                                console.log(fiveDay)
-                                console.log(temp)
-                                console.log(humid)
-                                console.log(wind)
-                                console.log(lat)
-                                console.log(lon)
-                                console.log(uvIndex)
-                                console.log(iconURL)
-                                console.log(response)
-                                console.log(today)
-
+                                
                                 if ($("#results-go-here").children) {
-                                $("#results-go-here").empty()
-                                $("#5day-go-here").empty()}
+                                    $("#results-go-here").empty()
+                                    $("#5day-go-here").empty()}
 
-                                var a = $("<button>").attr("data-name", searchTerm)
-                                a.addClass("city");
-                                a.text(searchTerm);
-                                $("#buttons-go-here").append(a)
+                            var a = $("<button>").attr("data-name", searchTerm)
+                                    a.addClass("city");
+                                    a.text(searchTerm);
+                                    $("#buttons-go-here").append(a)
 
-                                var b = $("<h3>").text(searchTerm+" "+today)
-                                b.addClass("float-left")
+                            var b = $("<h3>").text(searchTerm+" "+today)
+                                    b.addClass("float-left")
                                 
-                                var c = $("<img>").attr("src", iconURL)
-                                c.addClass("float-left")
-                                c.attr("id","icon")
+                            var c = $("<img>").attr("src", iconURL)
+                                    c.addClass("float-left")
+                                    c.attr("id","icon")
                                 
-                                var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
-                                var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
-                                var f = $("<p>").text("Wind Speed: "+wind+" MPH").attr("id","info")
-                                var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
+                            var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
+                            var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
+                            var f = $("<p>").text("Wind Speed: "+wind+" MPH").attr("id","info")
+                            var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
                                     
-                                var o = $("<h4>").text("5 Day Forecast:")
+                            var o = $("<h4>").text("5 Day Forecast:")
                                     $("#5day-go-here").append(o)                               
-                                    var n = 8
+                                    
+                            var n = 8
                                 for (var m=0;m<5;m++) {
                                     var icon2 = fiveDay.list[n].weather[0].icon
                                     var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                                var h = $("<div>").addClass("float-left")
-                                var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
-                                var i = $("<p>").text(date) 
-                                var j = $("<img>").attr("src", fiveIconURL )  
-                                var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                                var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
-                                    h.append(i,j,k,l)
-                                    $("#5day-go-here").append(h)
-                                    n+=7  
-                                }
+                                    var h = $("<div>").addClass("float-left")
+                                    var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
+                                    var i = $("<p>").text(date) 
+                                    var j = $("<img>").attr("src", fiveIconURL )  
+                                    var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
+                                    var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                                        
+                                        h.append(i,j,k,l)
+                                        $("#5day-go-here").append(h)
+                                    n+=7;}
                                 
                                 $("#results-go-here").addClass("border rounded")
                                 $("#results-go-here").append(b,c,d,e,f,g)
                                 $("#search").val("")
                                 
                                 localStorage.last = $("#results-go-here")[0].innerHTML
-                            localStorage.last2 = $("#5day-go-here")[0].innerHTML
-        })
-        })})})
+                                localStorage.last2 = $("#5day-go-here")[0].innerHTML
+})})})})
 
 
 
