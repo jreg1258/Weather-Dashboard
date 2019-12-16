@@ -3,9 +3,14 @@
     padding: 0px;
     margin-left: 10px;
 }
-
-#buttons-go-here, #5day-go-here, #results-go-here { 
+#results-go-here {
     display: block;
+    margin: 15px;
+}
+
+#buttons-go-here, #5day-go-here, { 
+    display: block;
+    margin: 15px;
 }
 
 .row {
@@ -36,4 +41,9 @@ h2 {
 
 h3 {
     text-transform:capitalize;
+    margin-top: 20px;
+}
+
+#icon {
+    margin-top:10px;
 }

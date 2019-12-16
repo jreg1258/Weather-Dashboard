@@ -27,7 +27,7 @@
     </div>
   
     <div class="row">
-        <div class="col-lg-10, clearfix" id="results-go-here"></div>
+        <div class="col-lg-10" id="results-go-here"></div>
         <div class="col-lg-10" id="5day-go-here"></div>
     </div>
       
@@ -81,8 +81,18 @@
 
             var b = $("<img>").attr("src", iconURL)
             b.addClass("float-left")
+            b.attr("id","icon")
+            
             var c = $("<h3>").text(searchTerm+" "+today)
-            c.addClass("flaot-left")
+            c.addClass("float-left")
+            $("#results-go-here").addClass("border rounded")
+
+            var d = $("<p>").text("Temperature: "+temp+"°F")
+            var e = $("<p>").text("Humidity: "+humid+"%")
+            var f = $("<p>").text("Wind Speed: "+wind+" MPH")
+            var g = $("<p>").text("UV Index: "+uvIndex)
+            
+
             $("#results-go-here").append(c,b)
             
            
