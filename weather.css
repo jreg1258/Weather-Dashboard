@@ -42,8 +42,14 @@ h2 {
 h3 {
     text-transform:capitalize;
     margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 #icon {
     margin-top:10px;
+    margin-bottom: 15px;
+}
+
+#info {
+    clear: both;
 }

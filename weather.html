@@ -61,43 +61,64 @@
            $.ajax({
             method: "GET",
             url: uvURL
-        }).then(function(UVresponse) {
+                }).then(function(UVresponse) {
             var uvIndex = UVresponse.value
-                
-            console.log(temp)
-            console.log(humid)
-            console.log(wind)
-            console.log(lat)
-            console.log(lon)
-            console.log(uvIndex)
-            console.log(iconURL)
-            console.log(response)
-            console.log(today)
+            var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&APPID=7874013951269e39ea832bee33a22dbe"
+                    $.ajax({
+                     method: "GET",
+                        url: fiveDayURL
+                         }).then(function(fivedayresponse) {
+                            var fiveDay = fivedayresponse
+                                console.log(fiveDay)
+                                console.log(temp)
+                                console.log(humid)
+                                console.log(wind)
+                                console.log(lat)
+                                console.log(lon)
+                                console.log(uvIndex)
+                                console.log(iconURL)
+                                console.log(response)
+                                console.log(today)
 
-            var a = $("<button>").attr("data-name", searchTerm)
-                a.addClass("city");
-            a.text(searchTerm);
-            $("#buttons-go-here").append(a)
+                                var a = $("<button>").attr("data-name", searchTerm)
+                                a.addClass("city");
+                                a.text(searchTerm);
+                                $("#buttons-go-here").append(a)
 
-            var b = $("<img>").attr("src", iconURL)
-            b.addClass("float-left")
-            b.attr("id","icon")
-            
-            var c = $("<h3>").text(searchTerm+" "+today)
-            c.addClass("float-left")
-            $("#results-go-here").addClass("border rounded")
-
-            var d = $("<p>").text("Temperature: "+temp+"°F")
-            var e = $("<p>").text("Humidity: "+humid+"%")
-            var f = $("<p>").text("Wind Speed: "+wind+" MPH")
-            var g = $("<p>").text("UV Index: "+uvIndex)
-            
-
-            $("#results-go-here").append(c,b)
-            
-           
+                                var b = $("<h3>").text(searchTerm+" "+today)
+                                b.addClass("float-left")
+                                
+                                var c = $("<img>").attr("src", iconURL)
+                                c.addClass("float-left")
+                                c.attr("id","icon")
+                                
+                                var d = $("<p>").text("Temperature: "+temp+"°F").attr("id","info")
+                                var e = $("<p>").text("Humidity: "+humid+"%").attr("id","info")
+                                var f = $("<p>").text("Wind Speed: "+wind+" MPH").attr("id","info")
+                                var g = $("<p>").text("UV Index: "+uvIndex).attr("id","info")
+                                    
+                                    var n = 8
+                                for (var m=0;m<5;m++) {
+                                    var icon2 = fiveDay.list[n].weather[0].icon
+                                    var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
+                                var h = $("<div>")
+                                var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
+                                var i = $("<p>").text  
+                                var j = $("<img>").attr("src", fiveIconURL )  
+                                var k = $("<p>")    
+                                var l = $("<p>")  
+                                    console.log(fiveIconURL)  
+                                    console.log(date)
+                                    console.log(n)
+                                    n+=7  
+                                }
+                                
+                                $("#results-go-here").addClass("border rounded")
+                                $("#results-go-here").append(b,c,d,e,f,g)
+                                
+                            
         })
-        })})
+        })})})
 
 
 
