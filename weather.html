@@ -9,29 +9,28 @@
     <title>Document</title>
 </head>
 <body>
-        <div class="row">
-            <div class="col-lg-2" id="sidebar"> 
-    <form>
-        <p>Weather DashBoard</p>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="search" placeholder="Recipient's username" aria-label="City" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary, fas fa-search-location" type="button" id="button-addon">
-                  
-            </button>
-            </div>
-          </div>
-        </form>
+        <h2 class="bg-dark">Weather Dashboard</h2>
+    <div class="row, float-left" id="sidebar">
+        <div> 
+            <form>
+                <p>Search For a City:</p>
+                    <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="search" placeholder="City" aria-label="City" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary, fas fa-search-location" type="button" id="button-addon"></button>
+                        </div>
+                    </div>
+            </form>
+            <hr>
+            <div class="col-lg-2" id="buttons-go-here"></div>
         </div> 
-        </div>
-      
-        <div class="row">
-    <div class="col-lg-2" id="buttons-go-here"></div>
-</div>
-</div>
+    </div>
+  
     <div class="row">
-        <div class="col-sm" id="results-go-here"></div>
-    </div>   
+        <div class="col-lg-10, clearfix" id="results-go-here"></div>
+        <div class="col-lg-10" id="5day-go-here"></div>
+    </div>
+      
 
 
 <script src="https://kit.fontawesome.com/07056a6ca0.js" crossorigin="anonymous"></script>
@@ -41,27 +40,29 @@
     $("#button-addon").on("click", function() {
         event.preventDefault()
         var searchTerm = $("#search").val()
-        
+    
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
 
         $.ajax({
             method: "GET",
             url: queryURL
         }).then(function(response) {
-           results = response
-           temp = results.main.temp
-           humid = results.main.humidity
-           wind = results.wind.speed
-           lat = results.coord.lat
-           lon = results.coord.lon
+           var results = response
+           var temp = results.main.temp
+           var humid = results.main.humidity
+           var wind = results.wind.speed
+           var lat = results.coord.lat
+           var lon = results.coord.lon
+           var icon = results.weather[0].icon
+           var iconURL = "https://openweathermap.org/img/wn/"+icon+".png"
+           var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&APPID=7874013951269e39ea832bee33a22dbe" 
+           var today = new Date().toLocaleDateString()
 
-           uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&APPID=7874013951269e39ea832bee33a22dbe" 
-           
            $.ajax({
             method: "GET",
             url: uvURL
         }).then(function(UVresponse) {
-            uvIndex = UVresponse.value
+            var uvIndex = UVresponse.value
                 
             console.log(temp)
             console.log(humid)
@@ -69,14 +70,21 @@
             console.log(lat)
             console.log(lon)
             console.log(uvIndex)
+            console.log(iconURL)
             console.log(response)
+            console.log(today)
 
-            a = $("<button>").attr("data-name", searchTerm)
+            var a = $("<button>").attr("data-name", searchTerm)
                 a.addClass("city");
             a.text(searchTerm);
             $("#buttons-go-here").append(a)
 
+            var b = $("<img>").attr("src", iconURL)
+            b.addClass("float-left")
+            var c = $("<h3>").text(searchTerm+" "+today)
 
+            $("#results-go-here").append(c)
+            $("#results-go-here").append(b)
            
         })
         })})
