@@ -40,7 +40,7 @@
     $("#button-addon").on("click", function() {
         event.preventDefault()
         var searchTerm = $("#search").val()
-    
+        
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
 
         $.ajax({
@@ -82,9 +82,9 @@
             var b = $("<img>").attr("src", iconURL)
             b.addClass("float-left")
             var c = $("<h3>").text(searchTerm+" "+today)
-
-            $("#results-go-here").append(c)
-            $("#results-go-here").append(b)
+            c.addClass("flaot-left")
+            $("#results-go-here").append(c,b)
+            
            
         })
         })})
