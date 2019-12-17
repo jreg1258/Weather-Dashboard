@@ -109,7 +109,7 @@ $("#button-addon").on("click", function() {
                                         for (var m=0;m<5;m++) {
                                                 var icon2 = fiveDay.list[n].weather[0].icon
                                                 var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                                                var h = $("<div>").addClass("float-left")
+                                                var h = $("<div>").addClass("float-left").attr("id","day")
                                                 var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
                                                 var i = $("<p>").text(date) 
                                                 var j = $("<img>").attr("src", fiveIconURL )  
@@ -185,7 +185,7 @@ $("#buttons-go-here").on("click", function() {
                     for (var m=0;m<5;m++) {
                         var icon2 = fiveDay.list[n].weather[0].icon
                         var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                        var h = $("<div>").addClass("float-left")
+                        var h = $("<div>").addClass("float-left").attr("id","day")
                         var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
                         var i = $("<p>").text(date) 
                         var j = $("<img>").attr("src", fiveIconURL )  
@@ -265,7 +265,7 @@ $("form").on("submit", function() {
                                 for (var m=0;m<5;m++) {
                                     var icon2 = fiveDay.list[n].weather[0].icon
                                     var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
-                                    var h = $("<div>").addClass("float-left")
+                                    var h = $("<div>").addClass("float-left").attr("id","day")
                                     var date = new Date(fiveDay.list[n].dt_txt).toLocaleDateString()
                                     var i = $("<p>").text(date) 
                                     var j = $("<img>").attr("src", fiveIconURL )  
