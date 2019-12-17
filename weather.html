@@ -27,9 +27,9 @@
             </div> 
         </div>
     
-        <div class="row">
+        <div class="row" id="results">
             <div class="col-lg-10" id="results-go-here"></div>
-            <div class="col-lg-10" id="5day-go-here"></div>
+            <div class="col-lg-10" id="5day-go-here" style="margin-top: 15px"></div>
         </div>
       
 
@@ -57,6 +57,7 @@ $("#button-addon").on("click", function() {
                 url: queryURL
                 }).then(function(response) {
                     var results = response
+                    console.log(response)
                     var temp = results.main.temp
                     var humid = results.main.humidity
                     var wind = results.wind.speed

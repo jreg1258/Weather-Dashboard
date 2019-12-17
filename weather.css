@@ -3,12 +3,17 @@
     padding: 0px;
     margin-left: 10px;
 }
-#results-go-here {
+
+#5day-go-here {
+    margin-top: 20px;
+}
+
+#results-go-here, #5day-go-here  {
     display: block;
     margin: 15px;
 }
 
-#buttons-go-here, #5day-go-here { 
+#buttons-go-here{ 
     display: block;
     margin: 15px;
 }
