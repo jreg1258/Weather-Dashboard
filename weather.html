@@ -105,7 +105,7 @@ $("#button-addon").on("click", function() {
                                     var o = $("<h4>").text("5 Day Forecast:")
                                             $("#5day-go-here").append(o)                               
                                         
-                                    var n = 8
+                                    var n = 0
                                         for (var m=0;m<5;m++) {
                                                 var icon2 = fiveDay.list[n].weather[0].icon
                                                 var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
@@ -117,11 +117,11 @@ $("#button-addon").on("click", function() {
                                                 var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
                                                         h.append(i,j,k,l)
                                                         $("#5day-go-here").append(h)
-                                                            n+=7 }
+                                                            n+=8 }
                                             $("#results-go-here").addClass("border rounded")
                                             $("#results-go-here").append(b,c,d,e,f,g)
                                             $("#search").val("")
-                                            
+                                            console.log(fivedayresponse)
                                             localStorage.last = $("#results-go-here")[0].innerHTML
                                             localStorage.last2 = $("#5day-go-here")[0].innerHTML
 })})})})
@@ -181,7 +181,7 @@ $("#buttons-go-here").on("click", function() {
                 var o = $("<h4>").text("5 Day Forecast:")
                         $("#5day-go-here").append(o)                               
                 
-                var n = 8
+                var n = 0
                     for (var m=0;m<5;m++) {
                         var icon2 = fiveDay.list[n].weather[0].icon
                         var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
@@ -194,7 +194,8 @@ $("#buttons-go-here").on("click", function() {
                                     
                             h.append(i,j,k,l)
                             $("#5day-go-here").append(h)
-                        n+=7; }
+                        n+=8; 
+                    }
                                 
                         $("#results-go-here").addClass("border rounded")
                         $("#results-go-here").append(b,c,d,e,f,g)
@@ -261,7 +262,7 @@ $("form").on("submit", function() {
                             var o = $("<h4>").text("5 Day Forecast:")
                                     $("#5day-go-here").append(o)                               
                                     
-                            var n = 8
+                            var n = 0
                                 for (var m=0;m<5;m++) {
                                     var icon2 = fiveDay.list[n].weather[0].icon
                                     var fiveIconURL = "https://openweathermap.org/img/wn/"+icon2+".png"        
@@ -274,7 +275,7 @@ $("form").on("submit", function() {
                                         
                                         h.append(i,j,k,l)
                                         $("#5day-go-here").append(h)
-                                    n+=7;}
+                                    n+=8;}
                                 
                                 $("#results-go-here").addClass("border rounded")
                                 $("#results-go-here").append(b,c,d,e,f,g)
