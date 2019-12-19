@@ -86,7 +86,7 @@ $("#button-addon").on("click", function() {
                                 $("#5day-go-here").empty()}
 
                                     var a = $("<button>").attr("data-name", searchTerm)
-                                            a.addClass("city");
+                                            a.addClass("city, btn btn-primary btn-lg");
                                             a.text(searchTerm);
                                             $("#buttons-go-here").append(a)
 
@@ -114,7 +114,7 @@ $("#button-addon").on("click", function() {
                                                 var i = $("<p>").text(date) 
                                                 var j = $("<img>").attr("src", fiveIconURL )  
                                                 var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                                                var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                                                var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity+"%")  
                                                         h.append(i,j,k,l)
                                                         $("#5day-go-here").append(h)
                                                             n+=8 }
@@ -190,7 +190,7 @@ $("#buttons-go-here").on("click", function() {
                         var i = $("<p>").text(date) 
                         var j = $("<img>").attr("src", fiveIconURL )  
                         var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                        var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                        var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity+"%")  
                                     
                             h.append(i,j,k,l)
                             $("#5day-go-here").append(h)
@@ -243,7 +243,7 @@ $("form").on("submit", function() {
                                     $("#5day-go-here").empty()}
 
                             var a = $("<button>").attr("data-name", searchTerm)
-                                    a.addClass("city");
+                                    a.addClass("city, btn btn-primary btn-lg");
                                     a.text(searchTerm);
                                     $("#buttons-go-here").append(a)
 
@@ -271,7 +271,7 @@ $("form").on("submit", function() {
                                     var i = $("<p>").text(date) 
                                     var j = $("<img>").attr("src", fiveIconURL )  
                                     var k = $("<p>").text("Temp: "+fiveDay.list[n].main.temp+"°F")    
-                                    var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity)  
+                                    var l = $("<p>").text("Humidity: "+fiveDay.list[n].main.humidity+"%")  
                                         
                                         h.append(i,j,k,l)
                                         $("#5day-go-here").append(h)
