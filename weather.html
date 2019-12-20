@@ -73,7 +73,7 @@ $("#button-addon").on("click", function() {
                 url: uvURL
                 }).then(function(UVresponse) {
                     var uvIndex = UVresponse.value
-                    var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+                    var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
                         
             $.ajax({
                 method: "GET",
@@ -154,7 +154,7 @@ $("#buttons-go-here").on("click", function() {
             url: uvURL
             }).then(function(UVresponse) {
                 var uvIndex = UVresponse.value
-                var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+                var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
         
         $.ajax({
             method: "GET",
@@ -231,7 +231,7 @@ $("form").on("submit", function() {
             url: uvURL
                 }).then(function(UVresponse) {
             var uvIndex = UVresponse.value
-            var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
+            var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q="+searchTerm+"&units=imperial&APPID=7874013951269e39ea832bee33a22dbe"
                     $.ajax({
                      method: "GET",
                         url: fiveDayURL
