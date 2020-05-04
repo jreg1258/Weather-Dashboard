@@ -53,5 +53,3 @@ Icon image (visual representation of weather conditions)
 Temperature
 
 Humidity
-
-Authors
