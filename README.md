@@ -4,6 +4,8 @@ A real time weather dashboard application with search functionality to find curr
 
 ![](weather1.png)
 
+https://jreg1258.github.io/Weather-Dashboard/weather.html
+
 User Story
 As a traveler I want to see the weather outlook for multiple cities so that I can plan a trip accordingly
 
